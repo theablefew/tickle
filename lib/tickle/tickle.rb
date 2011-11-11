@@ -157,7 +157,8 @@ module Tickle  #:nodoc:
     def process_for_ending(text)
       regex = /^(.*)(\s(?:\bend|until)(?:s|ing)?)(.*)/i
       if text =~ regex
-        return text.match(regex)[1], text.match(regex)[3]
+        match = text.match(regex)
+        return match[1], match[3]
       else
         return text, nil
       end
@@ -254,7 +255,7 @@ module Tickle  #:nodoc:
       @tokens.map(&:type)
     end
 
-    protected
+    # protected
 
     # Returns the next available month based on the current day of the month.
     # For example, if get_next_month(15) is called and the start date is the 10th, then it will return the 15th of this month.
